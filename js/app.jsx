@@ -1,7 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Layout from './components/Layout.jsx';
+import BurgerBilder from './components/BurgerBilder.jsx';
 
-ReactDOM.render(
-  <h1>DZIAŁA!!</h1>,
-  document.getElementById('app')
-)
+class App extends React.Component {
+  render(){
+    return (
+      <div>
+        <Layout>
+          <BurgerBilder />
+        </Layout>
+      </div>
+    )
+  }
+}
+
+export default App;
