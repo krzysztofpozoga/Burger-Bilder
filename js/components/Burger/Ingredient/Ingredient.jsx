@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropType from 'prop-types';
 
 class Ingredient extends React.Component {
   constructor(props){
@@ -16,7 +17,7 @@ class Ingredient extends React.Component {
           <div className='breadTop'>
             <div className='seeds1'></div>
             <div className='seeds2'></div>
-          </div>;
+          </div>
         );
         break;
       case ('meat'):
@@ -37,5 +38,7 @@ class Ingredient extends React.Component {
     return ingredient;
   }
 }
-
+Ingredient.protoTypes = {
+  type: PropType.string.isRequired
+};
 export default Ingredient;
