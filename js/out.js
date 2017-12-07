@@ -10297,8 +10297,17 @@ var Burger = function (_React$Component) {
       var transformedIngredients = Object.keys(this.props.ingredients).map(function (e) {
         return [].concat(_toConsumableArray(Array(_this2.props.ingredients[e]))).map(function (_, i) {
           return _react2.default.createElement(_Ingredient2.default, { key: e + i, type: e });
-        });
-      }); //transformation an object of key value pairs into an array of burger ingredients
+        }); //transformation an object of key value pairs into an array of burger ingredients
+      }).reduce(function (prev, curr) {
+        return prev.concat(curr);
+      }, []);
+      if (transformedIngredients.length === 0) {
+        transformedIngredients = _react2.default.createElement(
+          'p',
+          null,
+          'Dodaj sk\u0142adniki!'
+        );
+      }
       return _react2.default.createElement(
         'div',
         { className: 'burger' },
@@ -10442,10 +10451,10 @@ var BurgerBilder = function (_React$Component) {
 
     _this.state = {
       ingredients: {
-        salad: 1,
-        bacon: 1,
-        cheese: 2,
-        meat: 2
+        salad: 0,
+        bacon: 0,
+        cheese: 0,
+        meat: 0
       }
     };
     return _this;
