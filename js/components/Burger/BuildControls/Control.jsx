@@ -9,7 +9,7 @@ class Control extends React.Component {
     return (
       <div className='control'>
         <div className='label'>{this.props.label}</div>
-        <button className='more'>Więcej!</button>
+        <button className='more' onClick={this.props.added}>Więcej!</button>
         <button className='less'>Mniej!</button>
       </div>
     )

@@ -17,7 +17,7 @@ class BuildControls extends React.Component {
     return (
       <div className='buildControls'>
         {controls.map(control => (
-          <Control key={control.label} label={control.label}/>
+          <Control key={control.label} label={control.label} added={() => this.props.addIngredient(control.type)}/>
         ))}
       </div>
     )

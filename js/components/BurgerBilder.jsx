@@ -31,7 +31,7 @@ class BurgerBilder extends React.Component {
       ...this.state.ingredients
     }
     updatedIngredients[type] = updateCount;
-    const priceAddition = INGREDIENT_PRICES[type;];
+    const priceAddition = INGREDIENT_PRICES[type];
     const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice + priceAddition;
     this.setState({totalprice: newPrice, ingredients: updatedIngredients})
@@ -45,7 +45,7 @@ class BurgerBilder extends React.Component {
     return (
       <div>
         <Burger ingredients={this.state.ingredients}/>
-        <BuildControls />
+        <BuildControls addIngredient={this.addIngredient}/>
       </div>
     );
   }
