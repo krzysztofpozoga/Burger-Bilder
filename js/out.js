@@ -10272,6 +10272,8 @@ var _Ingredient2 = _interopRequireDefault(_Ingredient);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -10290,12 +10292,18 @@ var Burger = function (_React$Component) {
   _createClass(Burger, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      var transformedIngredients = Object.keys(this.props.ingredients).map(function (e) {
+        return [].concat(_toConsumableArray(Array(_this2.props.ingredients[e]))).map(function (_, i) {
+          return _react2.default.createElement(_Ingredient2.default, { key: e + i, type: e });
+        });
+      }); //transformation an object of key value pairs into an array of burger ingredients
       return _react2.default.createElement(
         'div',
         { className: 'burger' },
         _react2.default.createElement(_Ingredient2.default, { type: 'bread-top' }),
-        _react2.default.createElement(_Ingredient2.default, { type: 'cheese' }),
-        _react2.default.createElement(_Ingredient2.default, { type: 'meat' }),
+        transformedIngredients,
         _react2.default.createElement(_Ingredient2.default, { type: 'bread-bottom' })
       );
     }
@@ -10427,10 +10435,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var BurgerBilder = function (_React$Component) {
   _inherits(BurgerBilder, _React$Component);
 
-  function BurgerBilder() {
+  function BurgerBilder(props) {
     _classCallCheck(this, BurgerBilder);
 
-    return _possibleConstructorReturn(this, (BurgerBilder.__proto__ || Object.getPrototypeOf(BurgerBilder)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (BurgerBilder.__proto__ || Object.getPrototypeOf(BurgerBilder)).call(this, props));
+
+    _this.state = {
+      ingredients: {
+        salad: 1,
+        bacon: 1,
+        cheese: 2,
+        meat: 2
+      }
+    };
+    return _this;
   }
 
   _createClass(BurgerBilder, [{
@@ -10439,7 +10457,7 @@ var BurgerBilder = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_Burger2.default, null),
+        _react2.default.createElement(_Burger2.default, { ingredients: this.state.ingredients }),
         _react2.default.createElement(
           'div',
           null,
