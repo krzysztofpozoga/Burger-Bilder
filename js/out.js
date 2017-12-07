@@ -10433,6 +10433,10 @@ var _Burger = __webpack_require__(86);
 
 var _Burger2 = _interopRequireDefault(_Burger);
 
+var _BuildControls = __webpack_require__(192);
+
+var _BuildControls2 = _interopRequireDefault(_BuildControls);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10467,11 +10471,7 @@ var BurgerBilder = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(_Burger2.default, { ingredients: this.state.ingredients }),
-        _react2.default.createElement(
-          'div',
-          null,
-          'Build Controls'
-        )
+        _react2.default.createElement(_BuildControls2.default, null)
       );
     }
   }]);
@@ -22553,6 +22553,135 @@ module.exports = traverseAllChildren;
 
 module.exports = __webpack_require__(84);
 
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(21);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(16);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _Control = __webpack_require__(193);
+
+var _Control2 = _interopRequireDefault(_Control);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BuildControls = function (_React$Component) {
+  _inherits(BuildControls, _React$Component);
+
+  function BuildControls(props) {
+    _classCallCheck(this, BuildControls);
+
+    return _possibleConstructorReturn(this, (BuildControls.__proto__ || Object.getPrototypeOf(BuildControls)).call(this, props));
+  }
+
+  _createClass(BuildControls, [{
+    key: 'render',
+    value: function render() {
+      var controls = [{ label: 'Sałata', type: 'salad' }, { label: 'Bekon', type: 'bacon' }, { label: 'Ser', type: 'cheese' }, { label: 'Mięso', type: 'meat' }];
+      return _react2.default.createElement(
+        'div',
+        { className: 'buildControls' },
+        controls.map(function (control) {
+          return _react2.default.createElement(_Control2.default, { key: control.label, label: control.label });
+        })
+      );
+    }
+  }]);
+
+  return BuildControls;
+}(_react2.default.Component);
+
+exports.default = BuildControls;
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(21);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(16);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Control = function (_React$Component) {
+  _inherits(Control, _React$Component);
+
+  function Control(props) {
+    _classCallCheck(this, Control);
+
+    return _possibleConstructorReturn(this, (Control.__proto__ || Object.getPrototypeOf(Control)).call(this, props));
+  }
+
+  _createClass(Control, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'control' },
+        _react2.default.createElement(
+          'div',
+          { className: 'label' },
+          this.props.label
+        ),
+        _react2.default.createElement(
+          'button',
+          { className: 'more' },
+          'Wi\u0119cej!'
+        ),
+        _react2.default.createElement(
+          'button',
+          { className: 'less' },
+          'Mniej!'
+        )
+      );
+    }
+  }]);
+
+  return Control;
+}(_react2.default.Component);
+
+exports.default = Control;
 
 /***/ })
 /******/ ]);

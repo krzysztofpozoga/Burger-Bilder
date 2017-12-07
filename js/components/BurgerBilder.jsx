@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Burger from './Burger/Burger.jsx'
+import Burger from './Burger/Burger.jsx';
+import BuildControls from './Burger/BuildControls/BuildControls.jsx'
 
 class BurgerBilder extends React.Component {
   constructor(props){
@@ -19,7 +20,7 @@ class BurgerBilder extends React.Component {
     return (
       <div>
         <Burger ingredients={this.state.ingredients}/>
-        <div>Build Controls</div>
+        <BuildControls />
       </div>
     );
   }
