@@ -38,14 +38,23 @@ class BurgerBilder extends React.Component {
   }
 
   removeIngredient = (type) => {
-    
+    const oldCount = this.state.ingredients[type];
+    const updateCount = oldCount - 1;
+    const updatedIngredients = {
+      ...this.state.ingredients
+    }
+    updatedIngredients[type] = updateCount;
+    const priceDeduction = INGREDIENT_PRICES[type];
+    const oldPrice = this.state.totalPrice;
+    const newPrice = oldPrice - priceDeduction;
+    this.setState({totalprice: newPrice, ingredients: updatedIngredients})
   }
 
   render(){
     return (
       <div>
         <Burger ingredients={this.state.ingredients}/>
-        <BuildControls addIngredient={this.addIngredient}/>
+        <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient}/>
       </div>
     );
   }
