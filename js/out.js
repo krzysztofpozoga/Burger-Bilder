@@ -10296,6 +10296,16 @@ var BuildControls = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'buildControls' },
+        _react2.default.createElement(
+          'p',
+          null,
+          'Cena: ',
+          _react2.default.createElement(
+            'strong',
+            null,
+            this.props.price.toFixed(2)
+          )
+        ),
         controls.map(function (control) {
           return _react2.default.createElement(_Control2.default, { key: control.label, label: control.label, added: function added() {
               return _this2.props.addIngredient(control.type);
@@ -10605,7 +10615,7 @@ var BurgerBilder = function (_React$Component) {
       var priceAddition = INGREDIENT_PRICES[type];
       var oldPrice = _this.state.totalPrice;
       var newPrice = oldPrice + priceAddition;
-      _this.setState({ totalprice: newPrice, ingredients: updatedIngredients });
+      _this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
     };
 
     _this.removeIngredient = function (type) {
@@ -10619,7 +10629,7 @@ var BurgerBilder = function (_React$Component) {
       var priceDeduction = INGREDIENT_PRICES[type];
       var oldPrice = _this.state.totalPrice;
       var newPrice = oldPrice - priceDeduction;
-      _this.setState({ totalprice: newPrice, ingredients: updatedIngredients });
+      _this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
     };
 
     _this.state = {
@@ -10629,7 +10639,7 @@ var BurgerBilder = function (_React$Component) {
         cheese: 0,
         meat: 0
       },
-      totalPirce: 10
+      totalPrice: 10
     };
     return _this;
   }
@@ -10640,12 +10650,12 @@ var BurgerBilder = function (_React$Component) {
       var disabledInfo = _extends({}, this.state.ingredients);
       for (var key in disabledInfo) {
         disabledInfo[key] = disabledInfo[key] <= 0;
-      }
+      } // checks if there are ingredients ({salad: true, meat: false, ...})
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(_Burger2.default, { ingredients: this.state.ingredients }),
-        _react2.default.createElement(_BuildControls2.default, { addIngredient: this.addIngredient, removeIngredient: this.removeIngredient, disabled: disabledInfo })
+        _react2.default.createElement(_BuildControls2.default, { addIngredient: this.addIngredient, removeIngredient: this.removeIngredient, disabled: disabledInfo, price: this.state.totalPrice })
       );
     }
   }]);

@@ -16,6 +16,7 @@ class BuildControls extends React.Component {
     ]
     return (
       <div className='buildControls'>
+        <p>Cena: <strong>{this.props.price.toFixed(2)}</strong></p>
         {controls.map(control => (
           <Control key={control.label} label={control.label} added={() => this.props.addIngredient(control.type)} removed={() => this.props.removeIngredient(control.type)} disabled={this.props.disabled[control.type]}/>
         ))}

@@ -20,7 +20,7 @@ class BurgerBilder extends React.Component {
         cheese: 0,
         meat: 0
       },
-      totalPirce: 10
+      totalPrice: 10
     }
   }
 
@@ -34,7 +34,7 @@ class BurgerBilder extends React.Component {
     const priceAddition = INGREDIENT_PRICES[type];
     const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice + priceAddition;
-    this.setState({totalprice: newPrice, ingredients: updatedIngredients})
+    this.setState({totalPrice: newPrice, ingredients: updatedIngredients})
   }
 
   removeIngredient = (type) => {
@@ -50,7 +50,7 @@ class BurgerBilder extends React.Component {
     const priceDeduction = INGREDIENT_PRICES[type];
     const oldPrice = this.state.totalPrice;
     const newPrice = oldPrice - priceDeduction;
-    this.setState({totalprice: newPrice, ingredients: updatedIngredients})
+    this.setState({totalPrice: newPrice, ingredients: updatedIngredients})
   }
 
   render(){
@@ -59,11 +59,11 @@ class BurgerBilder extends React.Component {
     };
     for(let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0
-    }
+    } // checks if there are ingredients ({salad: true, meat: false, ...})
     return (
       <div>
         <Burger ingredients={this.state.ingredients}/>
-        <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo}/>
+        <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice}/>
       </div>
     );
   }

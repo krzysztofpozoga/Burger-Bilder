@@ -14,14 +14,14 @@
     cursor: pointer;
     outline: none;
     &:disabled {
-      background-color: #AC9980;
-      border: 1px solid #7E7365;
-      color: #ccc;
+      background-color: grey;
+      border: 1px solid black;
+      color: lightgrey;
       cursor: default;
     }
     &:hover:disabled {
-      background-color: #AC9980;
-      color: #ccc;
+      background-color: grey;
+      color: lightgrey;
       cursor: not-allowed;
     }
   }
