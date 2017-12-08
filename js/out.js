@@ -10301,7 +10301,7 @@ var BuildControls = function (_React$Component) {
               return _this2.props.addIngredient(control.type);
             }, removed: function removed() {
               return _this2.props.removeIngredient(control.type);
-            } });
+            }, disabled: _this2.props.disabled[control.type] });
         })
       );
     }
@@ -10368,7 +10368,7 @@ var Control = function (_React$Component) {
         ),
         _react2.default.createElement(
           'button',
-          { className: 'less', onClick: this.props.removed },
+          { className: 'less', onClick: this.props.removed, disabled: this.props.disabled },
           'Mniej!'
         )
       );
@@ -10610,6 +10610,9 @@ var BurgerBilder = function (_React$Component) {
 
     _this.removeIngredient = function (type) {
       var oldCount = _this.state.ingredients[type];
+      if (oldCount <= 0) {
+        return;
+      }
       var updateCount = oldCount - 1;
       var updatedIngredients = _extends({}, _this.state.ingredients);
       updatedIngredients[type] = updateCount;
@@ -10634,11 +10637,15 @@ var BurgerBilder = function (_React$Component) {
   _createClass(BurgerBilder, [{
     key: 'render',
     value: function render() {
+      var disabledInfo = _extends({}, this.state.ingredients);
+      for (var key in disabledInfo) {
+        disabledInfo[key] = disabledInfo[key] <= 0;
+      }
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(_Burger2.default, { ingredients: this.state.ingredients }),
-        _react2.default.createElement(_BuildControls2.default, { addIngredient: this.addIngredient, removeIngredient: this.removeIngredient })
+        _react2.default.createElement(_BuildControls2.default, { addIngredient: this.addIngredient, removeIngredient: this.removeIngredient, disabled: disabledInfo })
       );
     }
   }]);

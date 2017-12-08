@@ -39,6 +39,9 @@ class BurgerBilder extends React.Component {
 
   removeIngredient = (type) => {
     const oldCount = this.state.ingredients[type];
+    if(oldCount<=0) {
+      return
+    }
     const updateCount = oldCount - 1;
     const updatedIngredients = {
       ...this.state.ingredients
@@ -51,10 +54,16 @@ class BurgerBilder extends React.Component {
   }
 
   render(){
+    const disabledInfo = {
+      ...this.state.ingredients
+    };
+    for(let key in disabledInfo) {
+      disabledInfo[key] = disabledInfo[key] <= 0
+    }
     return (
       <div>
         <Burger ingredients={this.state.ingredients}/>
-        <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient}/>
+        <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo}/>
       </div>
     );
   }

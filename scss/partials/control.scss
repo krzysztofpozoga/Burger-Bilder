@@ -13,17 +13,17 @@
     border-radius: 15px;
     cursor: pointer;
     outline: none;
-    // &:disabled {
-    //   background-color: #AC9980;
-    //   border: 1px solid #7E7365;
-    //   color: #ccc;
-    //   cursor: default;
-    // }
-    // &:hover:disabled {
-    //   background-color: #AC9980;
-    //   color: #ccc;
-    //   cursor: not-allowed;
-    // }
+    &:disabled {
+      background-color: #AC9980;
+      border: 1px solid #7E7365;
+      color: #ccc;
+      cursor: default;
+    }
+    &:hover:disabled {
+      background-color: #AC9980;
+      color: #ccc;
+      cursor: not-allowed;
+    }
   }
   .label {
     padding: 10px;
