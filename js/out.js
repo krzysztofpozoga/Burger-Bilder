@@ -10621,6 +10621,7 @@ var BurgerBilder = function (_React$Component) {
       var oldPrice = _this.state.totalPrice;
       var newPrice = oldPrice + priceAddition;
       _this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
+      _this.updatePurchaseState(updatedIngredients);
     };
 
     _this.removeIngredient = function (type) {
@@ -10635,6 +10636,7 @@ var BurgerBilder = function (_React$Component) {
       var oldPrice = _this.state.totalPrice;
       var newPrice = oldPrice - priceDeduction;
       _this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
+      _this.updatePurchaseState(updatedIngredients);
     };
 
     _this.state = {
@@ -10652,8 +10654,7 @@ var BurgerBilder = function (_React$Component) {
 
   _createClass(BurgerBilder, [{
     key: 'updatePurchaseState',
-    value: function updatePurchaseState() {
-      var ingredients = _extends({}, this.state.ingredients);
+    value: function updatePurchaseState(ingredients) {
       var sum = Object.keys(ingredients).map(function (e) {
         return ingredients[e];
       }).reduce(function (sume, el) {
