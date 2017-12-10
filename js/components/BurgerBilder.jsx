@@ -20,8 +20,21 @@ class BurgerBilder extends React.Component {
         cheese: 0,
         meat: 0
       },
-      totalPrice: 10
+      totalPrice: 10,
+      purchasable: false
     }
+  }
+
+  updatePurchaseState(){
+    const ingredients = {
+      ...this.state.ingredients
+    };
+    const sum = Object.keys(ingredients).map(e => {
+      return ingredients[e];
+    }).reduce((sume, el) => {
+      return sume + el
+    }, 0);
+    this.setState({purchasable: sum > 0});
   }
 
   addIngredient = (type) => {
@@ -63,7 +76,7 @@ class BurgerBilder extends React.Component {
     return (
       <div>
         <Burger ingredients={this.state.ingredients}/>
-        <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice}/>
+        <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice} purchasable={this.state.purchasable}/>
       </div>
     );
   }

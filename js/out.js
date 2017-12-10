@@ -10315,7 +10315,7 @@ var BuildControls = function (_React$Component) {
         }),
         _react2.default.createElement(
           'button',
-          { className: 'orderButton' },
+          { className: 'orderButton', disabled: !this.props.purchasable },
           'ZAM\xD3W TERAZ'
         )
       );
@@ -10644,12 +10644,24 @@ var BurgerBilder = function (_React$Component) {
         cheese: 0,
         meat: 0
       },
-      totalPrice: 10
+      totalPrice: 10,
+      purchasable: false
     };
     return _this;
   }
 
   _createClass(BurgerBilder, [{
+    key: 'updatePurchaseState',
+    value: function updatePurchaseState() {
+      var ingredients = _extends({}, this.state.ingredients);
+      var sum = Object.keys(ingredients).map(function (e) {
+        return ingredients[e];
+      }).reduce(function (sume, el) {
+        return sume + el;
+      }, 0);
+      this.setState({ purchasable: sum > 0 });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var disabledInfo = _extends({}, this.state.ingredients);
@@ -10660,7 +10672,7 @@ var BurgerBilder = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(_Burger2.default, { ingredients: this.state.ingredients }),
-        _react2.default.createElement(_BuildControls2.default, { addIngredient: this.addIngredient, removeIngredient: this.removeIngredient, disabled: disabledInfo, price: this.state.totalPrice })
+        _react2.default.createElement(_BuildControls2.default, { addIngredient: this.addIngredient, removeIngredient: this.removeIngredient, disabled: disabledInfo, price: this.state.totalPrice, purchasable: this.state.purchasable })
       );
     }
   }]);
