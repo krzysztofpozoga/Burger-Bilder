@@ -10312,7 +10312,12 @@ var BuildControls = function (_React$Component) {
             }, removed: function removed() {
               return _this2.props.removeIngredient(control.type);
             }, disabled: _this2.props.disabled[control.type] });
-        })
+        }),
+        _react2.default.createElement(
+          'button',
+          { className: 'orderButton' },
+          'ZAM\xD3W TERAZ'
+        )
       );
     }
   }]);
