@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Burger from './Burger/Burger.jsx';
-import BuildControls from './Burger/BuildControls/BuildControls.jsx'
+import BuildControls from './Burger/BuildControls/BuildControls.jsx';
+import Modal from './UI/Modal/Modal.jsx';
+import Order from './Burger/OrderSummary/Order.jsx';
 
 const INGREDIENT_PRICES = {
   salad: 2,
@@ -74,6 +76,9 @@ class BurgerBilder extends React.Component {
     } // checks if there are ingredients ({salad: true, meat: false, ...})
     return (
       <div>
+        <Modal>
+          <Order ingredients={this.state.ingredients}/>
+        </Modal>
         <Burger ingredients={this.state.ingredients}/>
         <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice} purchasable={this.state.purchasable}/>
       </div>
