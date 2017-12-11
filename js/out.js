@@ -23087,6 +23087,10 @@ var _Logo = __webpack_require__(199);
 
 var _Logo2 = _interopRequireDefault(_Logo);
 
+var _NavItems = __webpack_require__(200);
+
+var _NavItems2 = _interopRequireDefault(_NavItems);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23119,7 +23123,7 @@ var Toolbar = function (_React$Component) {
         _react2.default.createElement(
           'nav',
           null,
-          '...'
+          _react2.default.createElement(_NavItems2.default, null)
         )
       );
     }
@@ -23183,6 +23187,131 @@ var Logo = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Logo;
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(13);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(10);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _NavItem = __webpack_require__(201);
+
+var _NavItem2 = _interopRequireDefault(_NavItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NavItems = function (_React$Component) {
+  _inherits(NavItems, _React$Component);
+
+  function NavItems(props) {
+    _classCallCheck(this, NavItems);
+
+    return _possibleConstructorReturn(this, (NavItems.__proto__ || Object.getPrototypeOf(NavItems)).call(this, props));
+  }
+
+  _createClass(NavItems, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'ul',
+        { className: 'navItems' },
+        _react2.default.createElement(
+          _NavItem2.default,
+          { link: '/', active: true },
+          'Burger Bilder'
+        ),
+        _react2.default.createElement(
+          _NavItem2.default,
+          { link: '/' },
+          'Checkout'
+        )
+      );
+    }
+  }]);
+
+  return NavItems;
+}(_react2.default.Component);
+
+exports.default = NavItems;
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(13);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(10);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NavItem = function (_React$Component) {
+  _inherits(NavItem, _React$Component);
+
+  function NavItem(props) {
+    _classCallCheck(this, NavItem);
+
+    return _possibleConstructorReturn(this, (NavItem.__proto__ || Object.getPrototypeOf(NavItem)).call(this, props));
+  }
+
+  _createClass(NavItem, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'li',
+        { className: 'navItem' },
+        _react2.default.createElement(
+          'a',
+          { href: this.props.link, className: this.props.active ? 'active' : null },
+          this.props.children
+        )
+      );
+    }
+  }]);
+
+  return NavItem;
+}(_react2.default.Component);
+
+exports.default = NavItem;
 
 /***/ })
 /******/ ]);
