@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Backdrop extends React.Component {
+  constructor(props){
+    super(props);
+  }
   render(){
     return (
-      <div>
-        
-      </div>
+      this.props.show ? <div className='backdrop' onClick={this.props.clicked}></div> : null
     )
   }
 }

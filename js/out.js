@@ -10740,6 +10740,10 @@ var BurgerBilder = function (_React$Component) {
       _this.setState({ purchasing: true });
     };
 
+    _this.purchaseCancelHandler = function () {
+      _this.setState({ purchasing: false });
+    };
+
     _this.state = {
       ingredients: {
         salad: 0,
@@ -10776,7 +10780,7 @@ var BurgerBilder = function (_React$Component) {
         null,
         _react2.default.createElement(
           _Modal2.default,
-          { show: this.state.purchasing },
+          { show: this.state.purchasing, modalClosed: this.purchaseCancelHandler },
           _react2.default.createElement(_Order2.default, { ingredients: this.state.ingredients })
         ),
         _react2.default.createElement(_Burger2.default, { ingredients: this.state.ingredients }),
@@ -10874,6 +10878,10 @@ var _reactDom = __webpack_require__(10);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _Backdrop = __webpack_require__(196);
+
+var _Backdrop2 = _interopRequireDefault(_Backdrop);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10896,8 +10904,13 @@ var Modal = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'modal', style: { transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)', opacity: this.props.show ? '1' : '0' } },
-        this.props.children
+        null,
+        _react2.default.createElement(_Backdrop2.default, { show: this.props.show, clicked: this.props.modalClosed }),
+        _react2.default.createElement(
+          'div',
+          { className: 'modal', style: { transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)', opacity: this.props.show ? '1' : '0' } },
+          this.props.children
+        )
       );
     }
   }]);
@@ -22916,6 +22929,56 @@ module.exports = traverseAllChildren;
 
 module.exports = __webpack_require__(84);
 
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(13);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(10);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Backdrop = function (_React$Component) {
+  _inherits(Backdrop, _React$Component);
+
+  function Backdrop(props) {
+    _classCallCheck(this, Backdrop);
+
+    return _possibleConstructorReturn(this, (Backdrop.__proto__ || Object.getPrototypeOf(Backdrop)).call(this, props));
+  }
+
+  _createClass(Backdrop, [{
+    key: 'render',
+    value: function render() {
+      return this.props.show ? _react2.default.createElement('div', { className: 'backdrop', onClick: this.props.clicked }) : null;
+    }
+  }]);
+
+  return Backdrop;
+}(_react2.default.Component);
+
+exports.default = Backdrop;
 
 /***/ })
 /******/ ]);
