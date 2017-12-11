@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Toolbar from './Navigation/Toolbar/Toolbar.jsx'
 
 class Layout extends React.Component {
   constructor(props){
@@ -8,7 +9,7 @@ class Layout extends React.Component {
   render(){
     return (
     <div>
-      <div>Toolbar, SideDrawer, Backdrop</div>
+      <Toolbar />
       <main className='layout'>{this.props.children}</main>
     </div>
     )
