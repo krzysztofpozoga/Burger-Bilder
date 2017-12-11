@@ -10640,6 +10640,16 @@ var Order = function (_React$Component) {
         _react2.default.createElement(
           'p',
           null,
+          _react2.default.createElement(
+            'strong',
+            null,
+            'Cena: ',
+            this.props.price.toFixed(2)
+          )
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
           'Jeste\u015B pewien?'
         ),
         _react2.default.createElement(
@@ -10709,10 +10719,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var INGREDIENT_PRICES = {
-  salad: 2,
+  salad: 2.50,
   cheese: 3,
   meat: 5,
-  bacon: 4
+  bacon: 4.50
 };
 
 var BurgerBilder = function (_React$Component) {
@@ -10799,7 +10809,7 @@ var BurgerBilder = function (_React$Component) {
         _react2.default.createElement(
           _Modal2.default,
           { show: this.state.purchasing, modalClosed: this.purchaseCancelHandler },
-          _react2.default.createElement(_Order2.default, { ingredients: this.state.ingredients, purchaseCanceled: this.purchaseCancelHandler, purchaseContinued: this.purchaseContinueHandler })
+          _react2.default.createElement(_Order2.default, { ingredients: this.state.ingredients, purchaseCanceled: this.purchaseCancelHandler, purchaseContinued: this.purchaseContinueHandler, price: this.state.totalPrice })
         ),
         _react2.default.createElement(_Burger2.default, { ingredients: this.state.ingredients }),
         _react2.default.createElement(_BuildControls2.default, { addIngredient: this.addIngredient, removeIngredient: this.removeIngredient, disabled: disabledInfo, price: this.state.totalPrice, purchasable: this.state.purchasable, ordered: this.purchaseHandler })

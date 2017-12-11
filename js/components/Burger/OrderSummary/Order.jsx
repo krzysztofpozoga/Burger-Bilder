@@ -19,6 +19,7 @@ class Order extends React.Component {
         <ul>
           {ingredientSummary}
         </ul>
+        <p><strong>Cena: {this.props.price.toFixed(2)}</strong></p>
         <p>Jesteś pewien?</p>
         <Button btnType='danger' clicked={this.props.purchaseCanceled}>ANULUJ</Button>
         <Button btnType='success' clicked={this.props.purchaseContinued}>DALEJ</Button>

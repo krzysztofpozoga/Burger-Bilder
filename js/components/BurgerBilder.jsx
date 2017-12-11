@@ -6,10 +6,10 @@ import Modal from './UI/Modal/Modal.jsx';
 import Order from './Burger/OrderSummary/Order.jsx';
 
 const INGREDIENT_PRICES = {
-  salad: 2,
+  salad: 2.50,
   cheese: 3,
   meat: 5,
-  bacon: 4
+  bacon: 4.50
 }
 
 class BurgerBilder extends React.Component {
@@ -90,7 +90,7 @@ class BurgerBilder extends React.Component {
     return (
       <div>
         <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-          <Order ingredients={this.state.ingredients} purchaseCanceled={this.purchaseCancelHandler} purchaseContinued={this.purchaseContinueHandler}/>
+          <Order ingredients={this.state.ingredients} purchaseCanceled={this.purchaseCancelHandler} purchaseContinued={this.purchaseContinueHandler} price={this.state.totalPrice}/>
         </Modal>
         <Burger ingredients={this.state.ingredients}/>
         <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice} purchasable={this.state.purchasable} ordered={this.purchaseHandler}/>
