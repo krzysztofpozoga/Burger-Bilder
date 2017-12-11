@@ -72,8 +72,12 @@ class BurgerBilder extends React.Component {
     this.setState({purchasing: true});
   }
 
-purchaseCancelHandler = () => {
+  purchaseCancelHandler = () => {
     this.setState({purchasing: false});
+  }
+
+  purchaseContinueHandler = () => {
+   alert('Zamówione!');
   }
 
   render(){
@@ -86,7 +90,7 @@ purchaseCancelHandler = () => {
     return (
       <div>
         <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-          <Order ingredients={this.state.ingredients}/>
+          <Order ingredients={this.state.ingredients} purchaseCanceled={this.purchaseCancelHandler} purchaseContinued={this.purchaseContinueHandler}/>
         </Modal>
         <Burger ingredients={this.state.ingredients}/>
         <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice} purchasable={this.state.purchasable} ordered={this.purchaseHandler}/>

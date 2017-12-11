@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Button from '../../UI/Button/Button.jsx';
+
 
 class Order extends React.Component {
   constructor(props){
@@ -17,7 +19,9 @@ class Order extends React.Component {
         <ul>
           {ingredientSummary}
         </ul>
-        <p>Dalej?</p>
+        <p>Jesteś pewien?</p>
+        <Button btnType='danger' clicked={this.props.purchaseCanceled}>ANULUJ</Button>
+        <Button btnType='success' clicked={this.props.purchaseContinued}>DALEJ</Button>
       </div>
     )
   }
