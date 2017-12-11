@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Logo from '../../Logo/Logo.jsx';
 
 class Toolbar extends React.Component {
   constructor(props){
@@ -9,7 +10,7 @@ class Toolbar extends React.Component {
     return (
       <header className='toolbar'>
         <div>MENU</div>
-        <div>LOGO</div>
+        <Logo />
         <nav>
           ...
         </nav>
