@@ -4,10 +4,12 @@ import ReactDOM from 'react-dom';
 class Order extends React.Component {
   constructor(props){
     super(props);
+    console.log(this.props.ingredients)
   }
   render(){
-    const ingredientSummary = Object.keys(this.props.ingredients).map(e => {
-      return <li key={e}><span style={{textTransform: 'capitalize'}}>{e}</span>: {this.props.ingredients[e]}</li>
+    const labels = ['Sałata', 'Bekon', 'Ser', 'Mięso'];
+    const ingredientSummary = Object.keys(this.props.ingredients).map((e, i) => {
+      return <li key={e}><span style={{textTransform: 'capitalize'}}>{labels[i]}</span>: {this.props.ingredients[e]}</li>
     })
     return (
       <div>
