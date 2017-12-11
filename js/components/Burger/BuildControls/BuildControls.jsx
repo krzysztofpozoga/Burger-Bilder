@@ -20,7 +20,7 @@ class BuildControls extends React.Component {
         {controls.map(control => (
           <Control key={control.label} label={control.label} added={() => this.props.addIngredient(control.type)} removed={() => this.props.removeIngredient(control.type)} disabled={this.props.disabled[control.type]}/>
         ))}
-        <button className='orderButton'disabled={!this.props.purchasable}>ZAMÓW TERAZ</button>
+        <button className='orderButton'disabled={!this.props.purchasable} onClick={this.props.ordered}>ZAMÓW TERAZ</button>
       </div>
     )
   }

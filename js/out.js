@@ -10315,7 +10315,7 @@ var BuildControls = function (_React$Component) {
         }),
         _react2.default.createElement(
           'button',
-          { className: 'orderButton', disabled: !this.props.purchasable },
+          { className: 'orderButton', disabled: !this.props.purchasable, onClick: this.props.ordered },
           'ZAM\xD3W TERAZ'
         )
       );
@@ -10593,10 +10593,7 @@ var Order = function (_React$Component) {
   function Order(props) {
     _classCallCheck(this, Order);
 
-    var _this = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this, props));
-
-    console.log(_this.props.ingredients);
-    return _this;
+    return _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this, props));
   }
 
   _createClass(Order, [{
@@ -10739,6 +10736,10 @@ var BurgerBilder = function (_React$Component) {
       _this.updatePurchaseState(updatedIngredients);
     };
 
+    _this.purchaseHandler = function () {
+      _this.setState({ purchasing: true });
+    };
+
     _this.state = {
       ingredients: {
         salad: 0,
@@ -10747,7 +10748,8 @@ var BurgerBilder = function (_React$Component) {
         meat: 0
       },
       totalPrice: 10,
-      purchasable: false
+      purchasable: false,
+      purchasing: false
     };
     return _this;
   }
@@ -10774,11 +10776,11 @@ var BurgerBilder = function (_React$Component) {
         null,
         _react2.default.createElement(
           _Modal2.default,
-          null,
+          { show: this.state.purchasing },
           _react2.default.createElement(_Order2.default, { ingredients: this.state.ingredients })
         ),
         _react2.default.createElement(_Burger2.default, { ingredients: this.state.ingredients }),
-        _react2.default.createElement(_BuildControls2.default, { addIngredient: this.addIngredient, removeIngredient: this.removeIngredient, disabled: disabledInfo, price: this.state.totalPrice, purchasable: this.state.purchasable })
+        _react2.default.createElement(_BuildControls2.default, { addIngredient: this.addIngredient, removeIngredient: this.removeIngredient, disabled: disabledInfo, price: this.state.totalPrice, purchasable: this.state.purchasable, ordered: this.purchaseHandler })
       );
     }
   }]);
@@ -10894,7 +10896,7 @@ var Modal = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'modal' },
+        { className: 'modal', style: { transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)', opacity: this.props.show ? '1' : '0' } },
         this.props.children
       );
     }

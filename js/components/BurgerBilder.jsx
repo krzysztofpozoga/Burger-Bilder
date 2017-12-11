@@ -23,7 +23,8 @@ class BurgerBilder extends React.Component {
         meat: 0
       },
       totalPrice: 10,
-      purchasable: false
+      purchasable: false,
+      purchasing: false
     }
   }
 
@@ -67,6 +68,10 @@ class BurgerBilder extends React.Component {
     this.updatePurchaseState(updatedIngredients);
   }
 
+  purchaseHandler = () => {
+    this.setState({purchasing: true});
+  }
+
   render(){
     const disabledInfo = {
       ...this.state.ingredients
@@ -76,11 +81,11 @@ class BurgerBilder extends React.Component {
     } // checks if there are ingredients ({salad: true, meat: false, ...})
     return (
       <div>
-        <Modal>
+        <Modal show={this.state.purchasing}>
           <Order ingredients={this.state.ingredients}/>
         </Modal>
         <Burger ingredients={this.state.ingredients}/>
-        <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice} purchasable={this.state.purchasable}/>
+        <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice} purchasable={this.state.purchasable} ordered={this.purchaseHandler}/>
       </div>
     );
   }
