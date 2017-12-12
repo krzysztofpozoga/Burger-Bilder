@@ -11,7 +11,7 @@ class Toolbar extends React.Component {
     return (
       <header className='toolbar'>
         <div>MENU</div>
-        <Logo />
+        <Logo height='80%'/>
         <nav>
           <NavItems />
         </nav>

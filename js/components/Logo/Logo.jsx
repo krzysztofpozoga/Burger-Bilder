@@ -8,7 +8,7 @@ class Logo extends React.Component {
   }
   render(){
     return (
-    <div className='logo'>
+    <div className='logo' style={{height: this.props.height}}>
       <img src='../../images/burger-logo.png' alt='MyBurger' />
     </div>
     )

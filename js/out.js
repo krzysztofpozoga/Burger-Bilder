@@ -10933,7 +10933,7 @@ var Logo = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'logo' },
+        { className: 'logo', style: { height: this.props.height } },
         _react2.default.createElement('img', { src: '../../images/burger-logo.png', alt: 'MyBurger' })
       );
     }
@@ -11126,7 +11126,7 @@ var Toolbar = function (_React$Component) {
           null,
           'MENU'
         ),
-        _react2.default.createElement(_Logo2.default, null),
+        _react2.default.createElement(_Logo2.default, { height: '80%' }),
         _react2.default.createElement(
           'nav',
           null,
@@ -23370,7 +23370,7 @@ var SideDrawer = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'sideDrawer' },
-        _react2.default.createElement(_Logo2.default, null),
+        _react2.default.createElement(_Logo2.default, { height: '10%' }),
         _react2.default.createElement(
           'nav',
           null,

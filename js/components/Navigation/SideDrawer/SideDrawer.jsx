@@ -10,7 +10,7 @@ class SideDrawer extends React.Component {
   render(){
     return (
     <div className='sideDrawer'>
-      <Logo />
+      <Logo height='10%'/>
       <nav>
         <NavItems />
       </nav>
