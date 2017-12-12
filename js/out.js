@@ -10871,6 +10871,12 @@ var Layout = function (_React$Component) {
       _this.setState({ showSideDrawer: false });
     };
 
+    _this.sideDrawerToggleHandler = function () {
+      _this.setState(function (prevState) {
+        return { showSideDrawer: !prevState.showSideDrawer };
+      });
+    };
+
     _this.state = {
       showSideDrawer: true
     };
@@ -10883,7 +10889,7 @@ var Layout = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_Toolbar2.default, null),
+        _react2.default.createElement(_Toolbar2.default, { drawerToggleClicked: this.sideDrawerToggleHandler }),
         _react2.default.createElement(_SideDrawer2.default, { open: this.state.showSideDrawer, closed: this.sideDrawerClosedHandler }),
         _react2.default.createElement(
           'main',
@@ -11107,6 +11113,10 @@ var _NavItems = __webpack_require__(95);
 
 var _NavItems2 = _interopRequireDefault(_NavItems);
 
+var _Toggle = __webpack_require__(203);
+
+var _Toggle2 = _interopRequireDefault(_Toggle);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -11130,11 +11140,7 @@ var Toolbar = function (_React$Component) {
       return _react2.default.createElement(
         'header',
         { className: 'toolbar' },
-        _react2.default.createElement(
-          'div',
-          null,
-          'MENU'
-        ),
+        _react2.default.createElement(_Toggle2.default, { clicked: this.props.drawerToggleClicked }),
         _react2.default.createElement(_Logo2.default, { height: '80%' }),
         _react2.default.createElement(
           'nav',
@@ -23406,6 +23412,60 @@ var SideDrawer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = SideDrawer;
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(7);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Toggle = function (_React$Component) {
+  _inherits(Toggle, _React$Component);
+
+  function Toggle(props) {
+    _classCallCheck(this, Toggle);
+
+    return _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
+  }
+
+  _createClass(Toggle, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { onClick: this.props.clicked },
+        'MENU'
+      );
+    }
+  }]);
+
+  return Toggle;
+}(_react2.default.Component);
+
+exports.default = Toggle;
 
 /***/ })
 /******/ ]);

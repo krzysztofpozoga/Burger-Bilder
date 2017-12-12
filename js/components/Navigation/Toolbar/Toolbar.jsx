@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Logo from '../../Logo/Logo.jsx';
 import NavItems from '../NavItems/NavItems.jsx';
+import Toggle from '../SideDrawer/Toggle.jsx'
 
 class Toolbar extends React.Component {
   constructor(props){
@@ -10,7 +11,7 @@ class Toolbar extends React.Component {
   render(){
     return (
       <header className='toolbar'>
-        <div>MENU</div>
+        <Toggle clicked={this.props.drawerToggleClicked}/>
         <Logo height='80%'/>
         <nav className='desktopOnly'>
           <NavItems />
