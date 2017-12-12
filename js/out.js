@@ -10878,7 +10878,7 @@ var Layout = function (_React$Component) {
     };
 
     _this.state = {
-      showSideDrawer: true
+      showSideDrawer: false
     };
     return _this;
   }
