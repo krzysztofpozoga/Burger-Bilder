@@ -6,6 +6,12 @@ class Modal extends React.Component {
   constructor(props){
     super(props);
   }
+  shouldComponentUpdate(nextProps, nextState){
+    return nextProps.show !== this.props.show;
+    // if(nextProps.show !== this.props.show) {
+    //   return true;
+    // } TO SAMO CO WYŻEJ
+  }
   render(){
     return (
       <div>
