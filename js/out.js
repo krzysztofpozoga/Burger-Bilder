@@ -23456,8 +23456,10 @@ var Toggle = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { onClick: this.props.clicked },
-        'MENU'
+        { className: 'drawerToggle', onClick: this.props.clicked },
+        _react2.default.createElement('div', null),
+        _react2.default.createElement('div', null),
+        _react2.default.createElement('div', null)
       );
     }
   }]);

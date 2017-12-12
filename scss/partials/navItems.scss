@@ -16,17 +16,18 @@
       width: 100%;
       align-items: center;
       a {
-        color: yellowgreen;
+        text-align: center;
+        color: green;
         text-decoration: none;
         width: 100%;
         box-sizing: border-box;
         display: block;
         &:hover, &:active {
-          color: yellowgreen;
+          color: green;
         }
       }
       .active {
-          color: yellowgreen;
+          color: green;
       }
     @media (min-width: 500px){
       margin: 0;

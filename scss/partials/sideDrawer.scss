@@ -11,6 +11,8 @@
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
   .logo {
+    display: flex;
+    justify-content: center;
     margin-bottom: 32px;
   }
   @media (min-width: 500px) {
@@ -20,7 +22,7 @@
 
 .open {
     transform: translateX(0);
-  }
-  .close {
-    transform: translateX(-100%);
-  }
+}
+.close {
+  transform: translateX(-100%);
+}

@@ -7,7 +7,11 @@ class Toggle extends React.Component {
   }
   render(){
     return (
-      <div onClick={this.props.clicked}>MENU</div>
+      <div className='drawerToggle' onClick={this.props.clicked}>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     )
   }
 }
