@@ -10865,7 +10865,16 @@ var Layout = function (_React$Component) {
   function Layout(props) {
     _classCallCheck(this, Layout);
 
-    return _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
+
+    _this.sideDrawerClosedHandler = function () {
+      _this.setState({ showSideDrawer: false });
+    };
+
+    _this.state = {
+      showSideDrawer: true
+    };
+    return _this;
   }
 
   _createClass(Layout, [{
@@ -10875,7 +10884,7 @@ var Layout = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(_Toolbar2.default, null),
-        _react2.default.createElement(_SideDrawer2.default, null),
+        _react2.default.createElement(_SideDrawer2.default, { open: this.state.showSideDrawer, closed: this.sideDrawerClosedHandler }),
         _react2.default.createElement(
           'main',
           { className: 'layout' },
@@ -23347,6 +23356,10 @@ var _NavItems = __webpack_require__(95);
 
 var _NavItems2 = _interopRequireDefault(_NavItems);
 
+var _Backdrop = __webpack_require__(97);
+
+var _Backdrop2 = _interopRequireDefault(_Backdrop);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23367,14 +23380,23 @@ var SideDrawer = function (_React$Component) {
   _createClass(SideDrawer, [{
     key: 'render',
     value: function render() {
+      var attachedClasses = ['sideDrawer', 'close'];
+      if (this.props.open) {
+        attachedClasses = ['sideDrawer', 'open'];
+      }
       return _react2.default.createElement(
         'div',
-        { className: 'sideDrawer' },
-        _react2.default.createElement(_Logo2.default, { height: '10%' }),
+        null,
+        _react2.default.createElement(_Backdrop2.default, { show: this.props.open, clicked: this.props.closed }),
         _react2.default.createElement(
-          'nav',
-          null,
-          _react2.default.createElement(_NavItems2.default, null)
+          'div',
+          { className: attachedClasses.join(' ') },
+          _react2.default.createElement(_Logo2.default, { height: '10%' }),
+          _react2.default.createElement(
+            'nav',
+            null,
+            _react2.default.createElement(_NavItems2.default, null)
+          )
         )
       );
     }
