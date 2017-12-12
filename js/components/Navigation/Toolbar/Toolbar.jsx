@@ -12,7 +12,7 @@ class Toolbar extends React.Component {
       <header className='toolbar'>
         <div>MENU</div>
         <Logo height='80%'/>
-        <nav>
+        <nav className='desktopOnly'>
           <NavItems />
         </nav>
       </header>

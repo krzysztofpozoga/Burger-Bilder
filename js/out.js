@@ -11129,7 +11129,7 @@ var Toolbar = function (_React$Component) {
         _react2.default.createElement(_Logo2.default, { height: '80%' }),
         _react2.default.createElement(
           'nav',
-          null,
+          { className: 'desktopOnly' },
           _react2.default.createElement(_NavItems2.default, null)
         )
       );
