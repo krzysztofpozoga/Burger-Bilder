@@ -10885,6 +10885,10 @@ var _firebase = __webpack_require__(204);
 
 var _firebase2 = _interopRequireDefault(_firebase);
 
+var _Spinner = __webpack_require__(205);
+
+var _Spinner2 = _interopRequireDefault(_Spinner);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10944,6 +10948,7 @@ var BurgerBilder = function (_React$Component) {
     };
 
     _this.purchaseContinueHandler = function () {
+      _this.setState({ loading: true });
       //  alert('Zamówione!');
       var object = {
         ingredients: _this.state.ingredients,
@@ -10963,9 +10968,9 @@ var BurgerBilder = function (_React$Component) {
         method: 'POST',
         body: JSON.stringify(object)
       }).then(function (response) {
-        return console.log(response);
+        _this.setState({ loading: false, purchasing: false });
       }).catch(function (error) {
-        return console.log(error);
+        _this.setState({ loading: false, purchasing: false });
       });
     };
 
@@ -10978,7 +10983,8 @@ var BurgerBilder = function (_React$Component) {
       },
       totalPrice: 10,
       purchasable: false,
-      purchasing: false
+      purchasing: false,
+      loading: false
     };
     return _this;
   }
@@ -11000,13 +11006,17 @@ var BurgerBilder = function (_React$Component) {
       for (var key in disabledInfo) {
         disabledInfo[key] = disabledInfo[key] <= 0;
       } // checks if there are ingredients ({salad: true, meat: false, ...})
+      var orderSummary = _react2.default.createElement(_Order2.default, { ingredients: this.state.ingredients, purchaseCanceled: this.purchaseCancelHandler, purchaseContinued: this.purchaseContinueHandler, price: this.state.totalPrice });
+      if (this.state.loading) {
+        orderSummary = _react2.default.createElement(_Spinner2.default, null);
+      }
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
           _Modal2.default,
           { show: this.state.purchasing, modalClosed: this.purchaseCancelHandler },
-          _react2.default.createElement(_Order2.default, { ingredients: this.state.ingredients, purchaseCanceled: this.purchaseCancelHandler, purchaseContinued: this.purchaseContinueHandler, price: this.state.totalPrice })
+          orderSummary
         ),
         _react2.default.createElement(_Burger2.default, { ingredients: this.state.ingredients }),
         _react2.default.createElement(_BuildControls2.default, { addIngredient: this.addIngredient, removeIngredient: this.removeIngredient, disabled: disabledInfo, price: this.state.totalPrice, purchasable: this.state.purchasable, ordered: this.purchaseHandler })
@@ -11467,7 +11477,7 @@ var Modal = function (_React$Component) {
   _createClass(Modal, [{
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps, nextState) {
-      return nextProps.show !== this.props.show;
+      return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
       // if(nextProps.show !== this.props.show) {
       //   return true;
       // } TO SAMO CO WYŻEJ
@@ -23523,6 +23533,60 @@ var config = {
 };
 
 exports.default = config;
+
+/***/ }),
+/* 205 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(6);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Spinner = function (_React$Component) {
+  _inherits(Spinner, _React$Component);
+
+  function Spinner() {
+    _classCallCheck(this, Spinner);
+
+    return _possibleConstructorReturn(this, (Spinner.__proto__ || Object.getPrototypeOf(Spinner)).apply(this, arguments));
+  }
+
+  _createClass(Spinner, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'loader' },
+        'Loading...'
+      );
+    }
+  }]);
+
+  return Spinner;
+}(_react2.default.Component);
+
+exports.default = Spinner;
 
 /***/ })
 /******/ ]);

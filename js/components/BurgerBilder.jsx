@@ -5,6 +5,7 @@ import BuildControls from './Burger/BuildControls/BuildControls.jsx';
 import Modal from './UI/Modal/Modal.jsx';
 import Order from './Burger/OrderSummary/Order.jsx';
 import config from '../firebase.jsx';
+import Spinner from './UI/Spinner/Spinner.jsx';
 
 const INGREDIENT_PRICES = {
   salad: 2.50,
@@ -25,7 +26,8 @@ class BurgerBilder extends React.Component {
       },
       totalPrice: 10,
       purchasable: false,
-      purchasing: false
+      purchasing: false,
+      loading: false
     }
   }
 
@@ -78,27 +80,32 @@ class BurgerBilder extends React.Component {
   }
 
   purchaseContinueHandler = () => {
+    this.setState({loading: true})
   //  alert('Zamówione!');
-  const object = {
-    ingredients: this.state.ingredients,
-    price: this.state.totalPrice,
-    customer: {
-      name: "Krzysiek",
-      address: {
-        street: "ul. AAAA",
-        postCode: "123-456",
-        city: "Warszawa"
+    const object = {
+      ingredients: this.state.ingredients,
+      price: this.state.totalPrice,
+      customer: {
+        name: "Krzysiek",
+        address: {
+          street: "ul. AAAA",
+          postCode: "123-456",
+          city: "Warszawa"
+        },
+        email: "test@test.com"
       },
-      email: "test@test.com"
-    },
-    delivery: "Szybko"
-  }
-  fetch(`${config.databaseURL}/orders.json`,	{
-		method:	'POST',
-		body:	JSON.stringify(	object	)
-  })
-  .then(response => console.log(response))
-  .catch(error => console.log(error))
+      delivery: "Szybko"
+    };
+    fetch(`${config.databaseURL}/orders.json`,	{
+      method:	'POST',
+      body:	JSON.stringify(	object	)
+    })
+    .then(response => {
+      this.setState({loading: false, purchasing: false})
+    })
+    .catch(error => {
+      this.setState({loading: false, purchasing: false})
+    });
   }
 
   render(){
@@ -108,10 +115,14 @@ class BurgerBilder extends React.Component {
     for(let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0
     } // checks if there are ingredients ({salad: true, meat: false, ...})
+    let orderSummary = <Order ingredients={this.state.ingredients} purchaseCanceled={this.purchaseCancelHandler} purchaseContinued={this.purchaseContinueHandler} price={this.state.totalPrice}/>
+    if(this.state.loading) {
+      orderSummary = <Spinner />
+    }
     return (
       <div>
         <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-          <Order ingredients={this.state.ingredients} purchaseCanceled={this.purchaseCancelHandler} purchaseContinued={this.purchaseContinueHandler} price={this.state.totalPrice}/>
+          {orderSummary}
         </Modal>
         <Burger ingredients={this.state.ingredients}/>
         <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice} purchasable={this.state.purchasable} ordered={this.purchaseHandler}/>
