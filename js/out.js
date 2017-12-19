@@ -10881,6 +10881,10 @@ var _Order = __webpack_require__(93);
 
 var _Order2 = _interopRequireDefault(_Order);
 
+var _firebase = __webpack_require__(204);
+
+var _firebase2 = _interopRequireDefault(_firebase);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10940,7 +10944,29 @@ var BurgerBilder = function (_React$Component) {
     };
 
     _this.purchaseContinueHandler = function () {
-      alert('Zamówione!');
+      //  alert('Zamówione!');
+      var object = {
+        ingredients: _this.state.ingredients,
+        price: _this.state.totalPrice,
+        customer: {
+          name: "Krzysiek",
+          address: {
+            street: "ul. AAAA",
+            postCode: "123-456",
+            city: "Warszawa"
+          },
+          email: "test@test.com"
+        },
+        delivery: "Szybko"
+      };
+      fetch(_firebase2.default.databaseURL + '/orders.json', {
+        method: 'POST',
+        body: JSON.stringify(object)
+      }).then(function (response) {
+        return console.log(response);
+      }).catch(function (error) {
+        return console.log(error);
+      });
     };
 
     _this.state = {
@@ -23476,6 +23502,27 @@ module.exports = traverseAllChildren;
 
 module.exports = __webpack_require__(87);
 
+
+/***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var config = {
+    apiKey: "AIzaSyBgKyk0ZVI8lF5g8cUCd0FfcP4EqxwgKVw",
+    authDomain: "burger-bilder.firebaseapp.com",
+    databaseURL: "https://burger-bilder.firebaseio.com",
+    projectId: "burger-bilder",
+    storageBucket: "burger-bilder.appspot.com",
+    messagingSenderId: "1045236117921"
+};
+
+exports.default = config;
 
 /***/ })
 /******/ ]);

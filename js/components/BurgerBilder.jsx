@@ -4,6 +4,7 @@ import Burger from './Burger/Burger.jsx';
 import BuildControls from './Burger/BuildControls/BuildControls.jsx';
 import Modal from './UI/Modal/Modal.jsx';
 import Order from './Burger/OrderSummary/Order.jsx';
+import config from '../firebase.jsx';
 
 const INGREDIENT_PRICES = {
   salad: 2.50,
@@ -77,7 +78,27 @@ class BurgerBilder extends React.Component {
   }
 
   purchaseContinueHandler = () => {
-   alert('Zamówione!');
+  //  alert('Zamówione!');
+  const object = {
+    ingredients: this.state.ingredients,
+    price: this.state.totalPrice,
+    customer: {
+      name: "Krzysiek",
+      address: {
+        street: "ul. AAAA",
+        postCode: "123-456",
+        city: "Warszawa"
+      },
+      email: "test@test.com"
+    },
+    delivery: "Szybko"
+  }
+  fetch(`${config.databaseURL}/orders.json`,	{
+		method:	'POST',
+		body:	JSON.stringify(	object	)
+  })
+  .then(response => console.log(response))
+  .catch(error => console.log(error))
   }
 
   render(){
