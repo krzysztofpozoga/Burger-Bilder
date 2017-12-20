@@ -18,17 +18,20 @@ class BurgerBilder extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      ingredients: {
-        salad: 0,
-        bacon: 0,
-        cheese: 0,
-        meat: 0
-      },
+      ingredients: null,
       totalPrice: 10,
       purchasable: false,
       purchasing: false,
       loading: false
     }
+  }
+
+  componentDidMount () {
+    fetch(`${config.databaseURL}/ingredients.json`)
+    .then(resp => resp.json())
+    .then(data => {
+      this.setState({ingredients: data})
+    })
   }
 
   updatePurchaseState(ingredients){
@@ -115,17 +118,30 @@ class BurgerBilder extends React.Component {
     for(let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0
     } // checks if there are ingredients ({salad: true, meat: false, ...})
-    let orderSummary = <Order ingredients={this.state.ingredients} purchaseCanceled={this.purchaseCancelHandler} purchaseContinued={this.purchaseContinueHandler} price={this.state.totalPrice}/>
+    let orderSummary = null;
+    
+    let burger = <Spinner />
+    if(this.state.ingredients) {
+      burger = (
+        <div>
+          <Burger ingredients={this.state.ingredients}/>
+          <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice} purchasable={this.state.purchasable} ordered={this.purchaseHandler}/>
+        </div>
+      )
+      orderSummary = (
+       <Order ingredients={this.state.ingredients} purchaseCanceled={this.purchaseCancelHandler} purchaseContinued={this.purchaseContinueHandler} price={this.state.totalPrice}/>
+      ) 
+    }
     if(this.state.loading) {
       orderSummary = <Spinner />
     }
+   
     return (
       <div>
         <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
           {orderSummary}
         </Modal>
-        <Burger ingredients={this.state.ingredients}/>
-        <BuildControls addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} disabled={disabledInfo} price={this.state.totalPrice} purchasable={this.state.purchasable} ordered={this.purchaseHandler}/>
+        {burger}
       </div>
     );
   }
